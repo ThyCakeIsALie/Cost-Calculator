@@ -137,16 +137,72 @@ header{
 }
 
 #header_title{
-	width:40%;
-	font-size:18pt;
+	width:96%;
+	font-size:17pt;
 	margin:left;
+	text-align:center;
 	font-family:Helvetica;
 	
 	padding-left:5px;
 }
 
 body{
+	overflow-x:hidden;
+	margin-top:385px;
+	transform: scale(1.5);
 	background-color:#FFFFF6;
 	font-family:Helvetica;
 }
 
+/* Media query for mobile devices /
+@media only screen and (max-width: 600px) {*/
+@media (max-width: 800px) {
+	header{
+		font-size:10pt;
+	}
+	#header_title{
+		width:96%;
+		font-size:1.5em;
+		margin:left;
+		text-align:center;
+		font-family:Helvetica;
+		
+		padding-left:5px;
+	}
+	.green_button{
+		border-radius:5px;
+		border:2px solid #eeeedf;
+		margin-top:10px;
+		width:180px;
+	    height:40px;
+	    font-size:22pt;
+	    
+	    background: linear-gradient(-90deg, rgb(60,255,0), #e1ffd9, #33e100, rgb(60,255,0));
+	    background-size: 400% 400%;
+		animation: gradient 2s infinite;
+		height: 7vh;
+	}
+
+	.yellow_button{
+		border-radius:5px;
+		border:2px solid #eeeedf;
+		margin-top:10px;
+		width:180px;
+	    height:40px;
+	    font-size:22pt;
+	    
+	    background: linear-gradient(-90deg, rgb(255,205,0), #c19b00, rgb(255,205,0));
+	    background-size: 200% 400%;
+		animation: gradientokay 1s infinite;
+		animation-timing-function:linear;
+		height: 7vh;
+	}
+	body{
+		margin-top:400px;
+		transform: scale(1.5);
+	}
+	#test{
+		font-size:20pt;
+	}
+	
+}
