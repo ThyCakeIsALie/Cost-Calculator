@@ -148,7 +148,7 @@ header{
 
 body{
 	overflow-x:hidden;
-	margin-top:410px;
+	margin-top:420px;
 	transform: scale(1.5);
 	background-color:#FFFFF6;
 	font-family:Helvetica;
@@ -240,6 +240,12 @@ body{
   		overflow-x: hidden;
   		width: 100%;
   		max-width: 100%;
+	}
+	
+	#summary{
+		text-align:left;
+		font-size:17pt;
+		padding:7px;
 	}
 	
 }
