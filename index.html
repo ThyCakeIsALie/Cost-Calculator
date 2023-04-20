@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.5">
 <link rel="stylesheet" href="main_style.css">
 <title>Cost Calculator</title>
 </head>
@@ -12,13 +12,65 @@
 	<div id="header_title">
 		<h1 id="test">Cost Calculator</h1>
 	</div>
-	</header>
+	</header>		
 	<div id="header_options">
 		<p>hello</p>
 	</div>
 	
 	
 	<script>
+		function sumResult(form_type){
+			// Get the values of the input fields
+		      if(form_type == 0){
+			      var input1 = parseInt(document.getElementById("input1").value);
+			      var input2 = parseInt(document.getElementById("input2").value);
+			      var input3 = parseInt(document.getElementById("input3").value);
+			      var input4 = parseInt(document.getElementById("input4").value);
+			      
+			      var result = document.getElementById("result").innerHTML;
+			      var sub_result = document.getElementById("sub_result").innerHTML;
+			      var percent_profit = document.getElementById("percent_profit").innerHTML;
+		      }
+		      if(form_type == 1){
+			      var input1 = parseInt(document.getElementById("input5").value);
+			      var input2 = parseInt(document.getElementById("input6").value);
+			      var input3 = 0;
+			      var input4 = parseInt(document.getElementById("input8").value);
+			      
+			      var result = document.getElementById("result2").innerHTML;
+			      var sub_result = document.getElementById("sub_result2").innerHTML;
+			      var percent_profit = document.getElementById("percent_profit2").innerHTML;
+		      }
+		      if(form_type == 2){
+			      var input1 = parseInt(document.getElementById("input9").value);
+			      var input2 = parseInt(document.getElementById("input10").value);
+			      var input3 = 0;
+			      var input4 = parseInt(document.getElementById("input12").value);
+			      
+			      var result = document.getElementById("result3").innerHTML;
+			      var sub_result = document.getElementById("sub_result3").innerHTML;
+			      var percent_profit = document.getElementById("percent_profit3").innerHTML;
+		      }
+		      
+		      if (isNaN(input1)) input1 = 0;
+			  if (isNaN(input2)) input2 = 0;
+			  if (isNaN(input3)) input3 = 0;
+			  if (isNaN(input4)) input4 = 0;
+		      
+		      if(form_type == 0){
+			      document.getElementById("summary").innerHTML = "Demo summary: <br>" +
+			      "The labor costs are <span class=\"special\">$" + ntc(input1) + "</span>, with <span class=\"special\">$" + ntc(input2) + "</span> in material costs and <span class=\"special\">$" + ntc(input3) + "</span> for other miscellanious costs. <br><br>" +
+			      "This brings us to a subtotal of <span class=\"special\">" + ntc(sub_result) + "</span> for all expenses. <br>" +
+			      "Currently seeking <span class=\"special\">$" + ntc(input4) + "</span> to make " + ntc(percent_profit) + " profit";
+			  }
+		      else{
+			      document.getElementById("summary").innerHTML = "Demo summary: <br>" +
+			      "The labor costs are <span class=\"special\">$" + ntc(input1) + "</span>, and <span class=\"special\">$" + ntc(input2) + "</span> for other miscellanious costs. <br><br>" +
+			      "This brings us to a subtotal of <span class=\"special\">" + ntc(sub_result) + "</span> for all expenses. <br>" +
+			      "Currently seeking <span class=\"special\">$" + ntc(input4) + "</span> to make " + ntc(percent_profit) + " profit";
+			  }
+		}
+		
 	    function calculateResult(form_type) {
 	      // Get the values of the input fields
 	      if(form_type == 0){
@@ -65,19 +117,19 @@
 	      if (isNaN(per_result)) per_result = "?";
 	      
 	      if(form_type == 0){
-		      document.getElementById("result").innerHTML = "$ " + result;
-		      document.getElementById("sub_result").innerHTML = "$ " + sub_result;
-		      document.getElementById("percent_profit").innerHTML = per_result + "%";
+		      document.getElementById("result").innerHTML = "$ " + ntc(result);
+		      document.getElementById("sub_result").innerHTML = "$ " + ntc(sub_result);
+		      document.getElementById("percent_profit").innerHTML = ntc(per_result) + "%";
 	      }
 	      if(form_type == 1){
-		      document.getElementById("result2").innerHTML = "$ " + result;
-		      document.getElementById("sub_result2").innerHTML = "$ " + sub_result;
-		      document.getElementById("percent_profit2").innerHTML = per_result + "%";
+		      document.getElementById("result2").innerHTML = "$ " + ntc(result);
+		      document.getElementById("sub_result2").innerHTML = "$ " + ntc(sub_result);
+		      document.getElementById("percent_profit2").innerHTML = ntc(per_result) + "%";
 	      }
 	      if(form_type == 2){
-		      document.getElementById("result3").innerHTML = "$ " + result;
-		      document.getElementById("sub_result3").innerHTML = "$ " + sub_result;
-		      document.getElementById("percent_profit3").innerHTML = per_result + "%";
+		      document.getElementById("result3").innerHTML = "$ " + ntc(result);
+		      document.getElementById("sub_result3").innerHTML = "$ " + ntc(sub_result);
+		      document.getElementById("percent_profit3").innerHTML = ntc(per_result) + "%";
 	      }
     }
  	</script>
@@ -167,7 +219,10 @@
 	  	<br>
 	  	</div>
 	  	
-	  	
+	  	<div class="form_div">
+	  		<h1>Summary</h1>
+	  		<div id="summary"></div>
+	  	</div>
 	  	<div class="form_div">
 	  		<h1>Create Docx (Soon)</h1>
 	  		<button type="button"  class="yellow_button">Create</button>
