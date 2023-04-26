@@ -22,6 +22,21 @@
 	
 	
 	<script>
+		function checkzero(num){
+			let ans = "";
+			if(num - (Math.round(num*10)/10) == 0 && num - (Math.round(num)) == 0){
+				ans += ".";
+			}
+			if(num - (Math.round(num*10)/10) == 0){
+				ans += "0";
+				if(num - (Math.round(num)) == 0){
+					ans += "0";
+				}
+			}
+			return ans;
+		}
+	
+	
 		var summary1 = "", summary2 = "", summary3 = "";
 		function sumResult(form_type){
 			// Get the values of the input fields
@@ -157,20 +172,20 @@
 	      if (isNaN(per_result)) per_result = "?";
 	      
 	      if(form_type == 0){
-		      document.getElementById("result").innerHTML = "$" + ntc(result);
-		      document.getElementById("sub_result").innerHTML = "$" + ntc(sub_result);
+		      document.getElementById("result").innerHTML = "$" + ntc(result) + checkzero(result);
+		      document.getElementById("sub_result").innerHTML = "$" + ntc(sub_result) + checkzero(sub_result);
 		      document.getElementById("percent_profit").innerHTML = ntc(per_result) + "%";
 	      }
 	      if(form_type == 1){
-		      document.getElementById("result2").innerHTML = "$" + ntc(result);
-		      document.getElementById("sub_result2").innerHTML = "$" + ntc(sub_result);
+		      document.getElementById("result2").innerHTML = "$" + ntc(result) + checkzero(result);
+		      document.getElementById("sub_result2").innerHTML = "$" + ntc(sub_result) + checkzero(sub_result);
 		      document.getElementById("percent_profit2").innerHTML = ntc(per_result) + "%";
 	      }
 	      if(form_type == 2){
-		      document.getElementById("result3").innerHTML = "$" + ntc(result);
-		      document.getElementById("sub_result3").innerHTML = "$" + ntc(sub_result);
+		      document.getElementById("result3").innerHTML = "$" + ntc(result) + checkzero(result);
+		      document.getElementById("sub_result3").innerHTML = "$" + ntc(sub_result) + checkzero(sub_result);
 		      document.getElementById("percent_profit3").innerHTML = ntc(per_result) + "%";
-		      document.getElementById("result4").innerHTML = "$" + ntc(result2);
+		      document.getElementById("result4").innerHTML = "$" + ntc(result2) + checkzero(result2);
 	      }
     }
  	</script>
