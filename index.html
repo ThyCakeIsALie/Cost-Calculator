@@ -4,23 +4,28 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.5">
 <link rel="stylesheet" href="main_style.css">
+
+
 <title>Cost Calculator</title>
 </head>
 <body>
 	
 	<header>
 	<div id="header_title">
+		<h1 id="test">&nbsp;</h1>
+	</div>
+	<div id="header_title">
 		<h1 id="test">Cost Calculator</h1>
 	</div>
 	</header>		
-	<div id="header_options">
-		<p>h</p>
-	</div>
+
 	
 	
 	<script>
+		var summary1 = "", summary2 = "", summary3 = "";
 		function sumResult(form_type){
 			// Get the values of the input fields
+			var result2 = 0;
 		      if(form_type == 0){
 			      var input1 = parseInt(document.getElementById("input1").value);
 			      var input2 = parseInt(document.getElementById("input2").value);
@@ -48,6 +53,7 @@
 			      var input4 = parseInt(document.getElementById("input12").value);
 			      
 			      var result = document.getElementById("result3").innerHTML;
+			      result2 = document.getElementById("result4").innerHTML;
 			      var sub_result = document.getElementById("sub_result3").innerHTML;
 			      var percent_profit = document.getElementById("percent_profit3").innerHTML;
 		      }
@@ -56,40 +62,51 @@
 			  if (isNaN(input2)) input2 = 0;
 			  if (isNaN(input3)) input3 = 0;
 			  if (isNaN(input4)) input4 = 0;
+			  if (isNaN(result2)) result2 = 0;
 		      
 		      if(form_type == 0){
-			      document.getElementById("summary").innerHTML = "Demo summary: <br>" +
+		    	  summary1 = "<div class=\"dark\"><b>House Paint:</b> <br>" +
 			      "The labor costs are <span class=\"special\">$" + ntc(input1) + "</span>, with <span class=\"special\">$" + ntc(input2) + "</span> in material costs and <span class=\"special\">$" + ntc(input3) + "</span> for other miscellanious costs. <br><br>" +
 			      "This brings us to a subtotal of <span class=\"special\">" + ntc(sub_result) + "</span> for all expenses. <br>" +
-			      "Currently seeking <span class=\"special\">$" + ntc(input4) + "</span> to make " + ntc(percent_profit) + " profit";
+			      "Currently seeking <span class=\"special\">$" + ntc(input4) + "</span> to make " + ntc(percent_profit) + " profit"  + "</div>";
 			  }
-		      else{
-			      document.getElementById("summary").innerHTML = "Demo summary: <br>" +
-			      "The labor costs are <span class=\"special\">$" + ntc(input1) + "</span>, and <span class=\"special\">$" + ntc(input2) + "</span> for other miscellanious costs. <br><br>" +
+		      if(form_type == 1){
+		    	  summary2 = "<div class=\"dark\"><b>Siding:</b> <br>" +
+			      "The labor costs are <span class=\"special\">$" + ntc(input1) + "</span>, and <span class=\"special\">$" + ntc(input2) + "</span> for material costs. <br><br>" +
 			      "This brings us to a subtotal of <span class=\"special\">" + ntc(sub_result) + "</span> for all expenses. <br>" +
-			      "Currently seeking <span class=\"special\">$" + ntc(input4) + "</span> to make " + ntc(percent_profit) + " profit";
+			      "Currently seeking <span class=\"special\">$" + ntc(input4) + "</span> to make " + ntc(percent_profit) + " profit"  + "</div>";
+			 
+		      }
+		      else{
+		    	  summary3 = "<div class=\"dark\"><b>Gutters:</b> <br>" +
+			      "The cost per LF is <span class=\"special\">$" + ntc(input2) + "</span>, with <span class=\"special\">" + ntc(input1) + "</span> total LF <br><br>" +
+			      "This brings us to a subtotal of <span class=\"special\">" + ntc(sub_result) + "</span> for all expenses. <br>" +
+			      "Currently seeking <span class=\"special\">$" + ntc(input4) + "</span> to make " + ntc(percent_profit) + " profit<br>" +
+			      "This sets the Price Per LF to $" + ntc(result2) + "</div>";
 			  }
+		      
+		      document.getElementById("summary").innerHTML = summary1 + "<br>" + summary2 + "<br>" + summary3;
 		}
 		
 	    function calculateResult(form_type) {
 	      // Get the values of the input fields
 	      if(form_type == 0){
-		      var input1 = parseInt(document.getElementById("input1").value);
-		      var input2 = parseInt(document.getElementById("input2").value);
-		      var input3 = parseInt(document.getElementById("input3").value);
-		      var input4 = parseInt(document.getElementById("input4").value);
+		      var input1 = parseFloat(document.getElementById("input1").value);
+		      var input2 = parseFloat(document.getElementById("input2").value);
+		      var input3 = parseFloat(document.getElementById("input3").value);
+		      var input4 = parseFloat(document.getElementById("input4").value);
 	      }
 	      if(form_type == 1){
-		      var input1 = parseInt(document.getElementById("input5").value);
-		      var input2 = parseInt(document.getElementById("input6").value);
+		      var input1 = parseFloat(document.getElementById("input5").value);
+		      var input2 = parseFloat(document.getElementById("input6").value);
 		      var input3 = 0;
-		      var input4 = parseInt(document.getElementById("input8").value);
+		      var input4 = parseFloat(document.getElementById("input8").value);
 	      }
 	      if(form_type == 2){
-		      var input1 = parseInt(document.getElementById("input9").value);
-		      var input2 = parseInt(document.getElementById("input10").value);
+		      var input1 = parseFloat(document.getElementById("input9").value);
+		      var input2 = parseFloat(document.getElementById("input10").value);
 		      var input3 = 0;
-		      var input4 = parseInt(document.getElementById("input12").value);
+		      var input4 = parseFloat(document.getElementById("input12").value);
 	      }
 	      
 	      // Identify Blanks
@@ -97,39 +114,63 @@
 		  if (isNaN(input2)) input2 = 0;
 		  if (isNaN(input3)) input3 = 0;
 		  if (isNaN(input4)) input4 = 0;
+		  if (isNaN(result2)) result2 = 0;
+	      
+		  if(form_type != 2){
+		      // Calculate the result
+		      var sub_result = input1 + input2 + input3;
+		      var result = sub_result + input4;
+		      var per_result = 1 - (sub_result / result);
+		      sub_result = Math.round(sub_result*100)/100;
+		      result = Math.round(result*100)/100;
+		      // Rounding + show 0s
+		      var per_r2 = Math.round(per_result*100);
+		      per_result = Math.round(per_result*1000)/10;
+		      
+		      if(per_r2 - per_result == 0){
+		    	  per_result = per_result + ".0";
+		      }
+		  }
+		  else{
+			  var sub_result = input1 * input2;
+			  var result = sub_result + input4;
+			  
+			  sub_result = Math.round(sub_result*100)/100;
+		      result = Math.round(result*100)/100;
+			  
+			  var per_result = 0;
+			  var result2 = result / input1;
+			  result2 = Math.round(result2*100)/100;
+			  
+		      var per_result = 1 - (sub_result / result);
 
-	      
-	      // Calculate the result
-	      var sub_result = input1 + input2 + input3;
-	      var result = sub_result + input4;
-	      var per_result = 1 - (sub_result / result);
-	      
-	      // Rounding + show 0s
-	      var per_r2 = Math.round(per_result*100);
-	      per_result = Math.round(per_result*1000)/10;
-	      
-	      if(per_r2 - per_result == 0){
-	    	  per_result = per_result + ".0";
-	      }
-	      
+		      // Rounding + show 0s
+		      var per_r2 = Math.round(per_result*100);
+		      per_result = Math.round(per_result*1000)/10;
+		      
+		      if(per_r2 - per_result == 0){
+		    	  per_result = per_result + ".0";
+		      }
+		  }
 	      // Display the result
 	      
 	      if (isNaN(per_result)) per_result = "?";
 	      
 	      if(form_type == 0){
-		      document.getElementById("result").innerHTML = "$ " + ntc(result);
-		      document.getElementById("sub_result").innerHTML = "$ " + ntc(sub_result);
+		      document.getElementById("result").innerHTML = "$" + ntc(result);
+		      document.getElementById("sub_result").innerHTML = "$" + ntc(sub_result);
 		      document.getElementById("percent_profit").innerHTML = ntc(per_result) + "%";
 	      }
 	      if(form_type == 1){
-		      document.getElementById("result2").innerHTML = "$ " + ntc(result);
-		      document.getElementById("sub_result2").innerHTML = "$ " + ntc(sub_result);
+		      document.getElementById("result2").innerHTML = "$" + ntc(result);
+		      document.getElementById("sub_result2").innerHTML = "$" + ntc(sub_result);
 		      document.getElementById("percent_profit2").innerHTML = ntc(per_result) + "%";
 	      }
 	      if(form_type == 2){
-		      document.getElementById("result3").innerHTML = "$ " + ntc(result);
-		      document.getElementById("sub_result3").innerHTML = "$ " + ntc(sub_result);
+		      document.getElementById("result3").innerHTML = "$" + ntc(result);
+		      document.getElementById("sub_result3").innerHTML = "$" + ntc(sub_result);
 		      document.getElementById("percent_profit3").innerHTML = ntc(per_result) + "%";
+		      document.getElementById("result4").innerHTML = "$" + ntc(result2);
 	      }
     }
  	</script>
@@ -141,26 +182,24 @@
 		<form id="form">
 			<h1>House</h1>
 		    <label for="input1">Labor&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-		    <input type="number" id="input1" name="input1"><br>
+		    <input type="number" id="input1" name="input1" step="0.01"><br>
 		    
-		    <label for="input2">Material&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-		    <input type="number" id="input2" name="input2"><br>
+		    <label for="input2">Paint&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+		    <input type="number" id="input2" name="input2" step="0.01"><br>
 		    
 		    <label for="input3">Tape/Paper/Plastic</label>
-		    <input type="number" id="input3" name="input3"><br>
+		    <input type="number" id="input3" name="input3" step="0.01"><br>
 		    <p>——————————————————</p>
-		    <h3>Total Labor and Material Cost:</h3>
-		    <div id="sub_result" class="output_labels">$</div>
-		    <h3>Profit:</h3>
-		    <label for="input4">Preferred Profit:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-		    <input type="number" id="input4" name="input4"><br>
-		    <p>——————————————————</p>
-		    <h3>Total Estimate Amount</h3>
-		    <div id="result" class="output_labels">$</div>
-		    <h3>Total Profit</h3>
-		    <div id="percent_profit" class="output_labels">%</div>
+		    <h3>Total Cost: <span id="sub_result" class="output_labels">$</span></h3><br>
 		    
-		    <button id="submitBtn" class="green_button" type="button" onclick="calculateResult(0)">Calculate</button>
+		    <label for="input4">Profit:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+		    <input type="number" id="input4" name="input4" step="0.01"><br>
+		    <p>——————————————————</p>
+		    <h3>Total Estimate: <span id="result" class="output_labels">$</span></h3>
+		    <h3>Total Profit: <span id="percent_profit" class="output_labels">%</span></h3>
+		    
+		    
+		    <button id="submitBtn" class="green_button" type="button" onclick="calculateResult(0)">Add</button>
 	  	</form>
 	  	<br>
 	  	</div>
@@ -168,26 +207,22 @@
 	  	<div class="form_div">
 		<br>
 		<form id="form2">
-			<h1>Siding Repair</h1>
-		    <label for="input5">Base&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-		    <input type="number" id="input5" name="input5"><br>
+			<h1>Siding / Trim</h1>
+		    <label for="input5">Labor&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+		    <input type="number" id="input5" name="input5" step="0.01"><br>
 		    
-		    <label for="input6">Misc&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-		    <input type="number" id="input6" name="input6"><br>
+		    <label for="input6">Materials&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+		    <input type="number" id="input6" name="input6" step="0.01"><br>
 		    
 		    <p>——————————————————</p>
-		    <h3>Total Labor and Material Cost:</h3>
-		    <div id="sub_result2" class="output_labels">$</div>
-		    <h3>Profit:</h3>
-		    <label for="input8">Preferred Profit:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-		    <input type="number" id="input8" name="input8"><br>
+		    <h3>Total Cost: <span id="sub_result2" class="output_labels">$</span></h3><br>
+		    <label for="input8">Profit:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+		    <input type="number" id="input8" name="input8" step="0.01"><br>
 		    <p>——————————————————</p>
-		    <h3>Total Estimate Amount</h3>
-		    <div id="result2" class="output_labels">$</div>
-		    <h3>Total Profit</h3>
-		    <div id="percent_profit2" class="output_labels">%</div>
+ 			<h3>Total Estimate: <span id="result2" class="output_labels">$</span></h3>
+		    <h3>Total Profit: <span id="percent_profit2" class="output_labels">%</span></h3>
 		    
-		    <button id="submitBtn2" class="green_button" type="button" onclick="calculateResult(1)">Calculate</button>
+		    <button id="submitBtn2" class="green_button" type="button" onclick="calculateResult(1)">Add</button>
 	  	</form>
 	  	<br>
 	  	</div>
@@ -195,26 +230,25 @@
 	  	<div class="form_div">
 		<br>
 		<form id="form3">
+		
 			<h1>Gutters</h1>
-		    <label for="input9">Base&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-		    <input type="number" id="input9" name="input9"><br>
+		    <label for="input9">Linear Feet = &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+		    <input type="number" id="input9" name="input9" step="0.01"><br>
 		    
-		    <label for="input10">Misc&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-		    <input type="number" id="input10" name="input10"><br>
+		    <label for="input10">Cost Per LF = &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+		    <input type="number" id="input10" name="input10" step="0.01"><br>
 
+		    <h3>Total Cost: <span id="sub_result3" class="output_labels">$</span></h3>
 		    <p>——————————————————</p>
-		    <h3>Total Labor and Material Cost:</h3>
-		    <div id="sub_result3" class="output_labels">$</div>
-		    <h3>Profit:</h3>
-		    <label for="input12">Preferred Profit:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-		    <input type="number" id="input12" name="input12"><br>
-		    <p>——————————————————</p>
-		    <h3>Total Estimate Amount</h3>
-		    <div id="result3" class="output_labels">$</div>
-		    <h3>Total Profit</h3>
-		    <div id="percent_profit3" class="output_labels">%</div>
+		    <label for="input12">Profit:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+		    <input type="number" id="input12" name="input12" step="0.01"><br>
+		    <h3>Total Profit: <span id="percent_profit3" class="output_labels" >%</span></h3>
 		    
-		    <button id="submitBtn3" type="button" class="green_button" onclick="calculateResult(2)">Calculate</button>
+		    <p>——————————————————</p>
+		    <h3>Total Estimate: <span id="result3" class="output_labels">$</span></h3>
+		    <h3>Price Per LF: <span id="result4" class="output_labels">$</span></h3>
+		    
+		    <button id="submitBtn3" type="button" class="green_button" onclick="calculateResult(2)">Add</button>
 	  	</form>
 	  	<br>
 	  	</div>

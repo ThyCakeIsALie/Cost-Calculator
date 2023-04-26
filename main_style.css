@@ -56,6 +56,7 @@ h3{
 
 .output_labels {
      transition: color #00d000 0.5s;
+     font-weight:normal;
 }
 .output_labels.animate {
     color: #00d000;
@@ -135,7 +136,12 @@ header{
 	padding-left:10px;
 	
 }
-
+.dark{
+	margin-top:5px;
+	background-color:#e3e3cc;
+	box-shadow: 0 3px 7px rgba(0, 0, 0, 0.2);
+	border-radius:5px;
+}
 #header_title{
 	width:96%;
 	font-size:17pt;
@@ -148,7 +154,7 @@ header{
 
 body{
 	overflow-x:hidden;
-	margin-top:420px;
+	margin-top:370px;
 	transform: scale(1.5);
 	background-color:#FFFFF6;
 	font-family:Helvetica;
@@ -229,7 +235,7 @@ body{
 	}
 	body{
 		font-size:14pt;
-		margin-top:7px;
+		margin-top:-30px;
 		transform: scale(1.0);
 	}
 	#test{

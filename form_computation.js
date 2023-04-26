@@ -100,3 +100,7 @@ const boxes = document.querySelectorAll('.output_labels');
 	  behavior: 'smooth'
 	  });
   }
+  
+  
+  //gutter cost by linear feet: $6.50 / ft <--make modular rate
+  
